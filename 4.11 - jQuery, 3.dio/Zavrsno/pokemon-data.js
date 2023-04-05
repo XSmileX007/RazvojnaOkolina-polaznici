@@ -44,7 +44,7 @@ $(document).ready(function() {
             //console.log("----> " + onePokemon.name + "; url: " + onePokemon.url);
             dohvatiDetalje(onePokemon);
         }*/
-        $.when.apply($, podaci.pokemon_species.map(function(jedanPokemon){
+        $.when.apply($, podaci.pokemon_species.slice(0,20).map(function(jedanPokemon){
           return dohvatiDetalje(jedanPokemon);
         })).done(function(){
             prikaziPokemone();
