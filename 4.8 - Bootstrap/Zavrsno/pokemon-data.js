@@ -29,9 +29,11 @@ $(document).ready(function() {
         $('[data-bs-toggle="popover"]').popover();
     }
 
+
     // funkcija koja ce se pozvati na loadanju stranice
     request.onload = function() {
         popuniPokemone();
+ 
     }
     // posanji request na (pokemon) API
     request.send();
