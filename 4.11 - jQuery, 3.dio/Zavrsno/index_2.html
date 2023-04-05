@@ -15,11 +15,15 @@
         <tr>
           <th class="col-sm-12 d-none d-sm-block">Redni broj</th>
           <th class="col-sm-12">Ime pokemona</th>
+          <th class="hidden-xs col-sm-3">Prirodno staniste</th>
+					<th class="hidden-xs col-sm-4">Brzina rasta</th>
         </tr>
         {{#each pokemon}}
           <tr>
             <td class="col-sm-12 d-none d-sm-block">{{matematika @index '+' 1}}</td>
             <td class="col-sm-12"><a href="#" data-bs-title="{{this.name}}" data-bs-toggle="popover" data-bs-content="{{this.url}}">{{this.name}}</a></td>
+            <td class="col-sm-12">{{this.habitat}}</td>
+            <td class="col-sm-12">{{this.growth}}</td>
           </tr>
         {{/each}}
     </table>

@@ -37,25 +37,31 @@ $(document).ready(function() {
 
     function popuniPokemone1(podaci){
         console.log("invoked popuniPokemone1...");
-        let pokemoni = podaci.pokemon_species.slice(0,20);
+        /*let pokemoni = podaci.pokemon_species.slice(0,20);
         //console.log(pokemoni);
         for(let i = 0; i < pokemoni.length; i++){
             let onePokemon = pokemoni[i];
             //console.log("----> " + onePokemon.name + "; url: " + onePokemon.url);
             dohvatiDetalje(onePokemon);
-        }
+        }*/
+        $.when.apply($, podaci.pokemon_species.map(function(jedanPokemon){
+          return dohvatiDetalje(jedanPokemon);
+        })).done(function(){
+            prikaziPokemone();
+            odradiOstalo();
+        });
         
     }
 
     function dohvatiDetalje(pokemon){
         console.log("invoked dohvatiDetalje");
-        return $.ajax({
+         return $.ajax({
             url: pokemon.url
           }).done(function(podaci) {
               const imePokemona = pokemon.name;
               const urlPokemona = pokemon.url;
-              const habi = podaci.habitat.name;
-              const grow = podaci.growth_rate.name;
+              const habi = (podaci.habitat == null) ? "-": podaci.habitat.name;
+              const grow = podaci.growth_rate == null ? "-" : podaci.growth_rate.name;
 
               let myPokemon = { 
                   name : imePokemona,
@@ -134,9 +140,9 @@ $(document).ready(function() {
         //popuniPokemone(podaci);
         popuniPokemone1(podaci);
         
-        setTimeout(function(){
+        /*setTimeout(function(){
             prikaziPokemone();
-        }, 20);
+        }, 20);*/
         
         //
         //odradiOstalo();
